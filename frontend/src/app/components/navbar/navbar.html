@@ -1,1 +1,38 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand fw-bold text-warning" routerLink="/">
+      GibsonStore
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/galeria" routerLinkActive="active">Catálogo</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/carrito" routerLinkActive="active">
+            🛒 Carrito
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="d-flex">
+        <a class="btn btn-outline-warning btn-sm fw-bold" routerLink="/checkout">
+          Finalizar Compra
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

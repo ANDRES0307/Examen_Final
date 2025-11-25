@@ -1,0 +1,9 @@
+.card-guitarra:hover {
+    transform: translateY(-5px);
+    border-color: #ffc107 !important; /* Color amarillo Gibson */
+    transition: all 0.3s ease;
+}
+
+.card-guitarra:hover img {
+    transform: scale(1.1) rotate(-5deg);
+}
