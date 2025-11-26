@@ -1,9 +1,57 @@
-.hero-section {
-    /* Imagen de fondo de una Les Paul */
-    background-image: url('https://images.unsplash.com/photo-1550985543-f47f38aee65d?q=80&w=1920&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    height: 85vh; /* Ocupa casi toda la pantalla */
-    border-radius: 15px;
-    margin-bottom: 20px;
+/* --- NUEVOS ESTILOS PARA EL HERO SPLIT --- */
+
+.split-hero-container {
+    background-color: #1a1a1a; /* Fondo muy oscuro */
+    min-height: 90vh; /* Ocupa casi toda la pantalla */
+    display: flex;
+    align-items: center;
+    padding: 60px 5vw; /* Espacio en los laterales */
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
 }
+
+.hero-content {
+    flex: 1;
+    max-width: 45%;
+    z-index: 10;
+}
+
+/* Contenedor de la Imagen */
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* La imagen grande */
+.sg-image {
+    width: 100%;
+    max-width: 800px;
+    /* Le damos un poco de ángulo y sombra */
+    transform: rotate(350deg); 
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.9)); 
+    margin-right: -100px; /* Para que salga un poco de la pantalla */
+}
+
+/* El Tag de Precio Vertical */
+.price-tag {
+    position: absolute;
+    writing-mode: vertical-lr; /* Pone el texto en vertical */
+    right: 50px;
+    top: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.max-w-400 {
+    max-width: 400px;
+}
+
+/* --- Estilos de las tarjetas de vista previa (mantener) --- */
+/* .card-hover-effect { ... } */ 
+/* etc. */
