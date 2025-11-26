@@ -1,1 +1,71 @@
-<p>carrito works!</p>
+<div class="container py-5 text-white">
+  <h2 class="text-warning fw-bold mb-4 text-uppercase">🛒 Tu Carrito</h2>
+
+  <div *ngIf="tiendaService.cartItems.length === 0" class="text-center py-5 bg-dark border border-secondary rounded">
+    <h3 class="text-secondary mb-3">Tu carrito está vacío 😢</h3>
+    <p class="mb-4">¡Nuestras guitarras te están esperando!</p>
+    <a routerLink="/galeria" class="btn btn-outline-warning fw-bold px-4">Ir al Catálogo</a>
+  </div>
+
+  <div *ngIf="tiendaService.cartItems.length > 0" class="row g-4">
+    
+    <div class="col-lg-8">
+      <div class="card bg-dark border-secondary mb-3 shadow-sm" *ngFor="let item of tiendaService.cartItems">
+        <div class="row g-0 align-items-center p-2">
+          
+          <div class="col-3 col-md-2 bg-white rounded d-flex justify-content-center align-items-center p-1">
+            <img [src]="item.imagen" class="img-fluid" style="max-height: 80px; object-fit: contain;">
+          </div>
+          
+          <div class="col-9 col-md-10 ps-3">
+            <div class="card-body p-2">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title text-warning fw-bold m-0">{{ item.nombre }}</h5>
+                  <small class="text-secondary">Cantidad: {{ item.cantidad }}</small>
+                </div>
+                <div class="text-end">
+                  <p class="fw-bold text-white fs-5 m-0">${{ item.precio * item.cantidad }}</p>
+                  <button (click)="eliminar(item.id)" class="btn btn-link text-danger text-decoration-none p-0 small">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card bg-dark border-warning shadow sticky-top" style="top: 90px; z-index: 1;">
+        <div class="card-header bg-warning text-dark fw-bold text-center">
+          RESUMEN DEL PEDIDO
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-secondary">Subtotal</span>
+            <span class="fw-bold">${{ tiendaService.getTotal() }}</span>
+          </div>
+          <div class="d-flex justify-content-between mb-4">
+            <span class="text-secondary">Envío</span>
+            <span class="text-success fw-bold">Gratis 🚚</span>
+          </div>
+          
+          <hr class="border-secondary">
+          
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="fs-5 fw-bold">TOTAL</span>
+            <span class="fs-3 fw-bold text-warning">${{ tiendaService.getTotal() }}</span>
+          </div>
+          
+          <a routerLink="/checkout" class="btn btn-warning w-100 py-2 fw-bold shadow-sm">
+            PROCEDER AL PAGO 💳
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

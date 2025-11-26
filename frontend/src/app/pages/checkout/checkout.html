@@ -1,1 +1,60 @@
-<p>checkout works!</p>
+<div class="container py-5 text-white">
+  <h2 class="text-warning fw-bold mb-5 text-center text-uppercase">Finalizar Compra</h2>
+
+  <div class="row g-5">
+    
+    <div class="col-md-7">
+      <div class="card bg-dark border-secondary shadow p-4">
+        <h4 class="mb-4 text-white border-bottom border-secondary pb-2">Datos de Facturación</h4>
+        
+        <form (ngSubmit)="pagar()">
+          <div class="mb-3">
+            <label class="form-label text-secondary">Nombre Completo</label>
+            <input type="text" class="form-control bg-dark text-white border-secondary" 
+                   [(ngModel)]="datos.nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label text-secondary">Correo Electrónico</label>
+            <input type="email" class="form-control bg-dark text-white border-secondary" 
+                   [(ngModel)]="datos.correo" name="correo" placeholder="juan@ejemplo.com" required>
+          </div>
+
+          <h4 class="mb-3 text-white">Pago</h4>
+          <div class="alert alert-warning text-dark d-flex align-items-center">
+            <i class="bi bi-credit-card-2-front fs-4 me-2"></i>
+            <strong>Simulación: Tarjeta de Crédito / Débito</strong>
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100 btn-lg fw-bold mt-2">
+            CONFIRMAR PAGO 💰
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="card bg-dark border-warning shadow">
+        <div class="card-header bg-warning text-dark fw-bold">
+          Resumen del Pedido
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between lh-sm" 
+              *ngFor="let item of tiendaService.cartItems">
+            <div>
+              <h6 class="my-0 text-warning">{{ item.nombre }}</h6>
+              <small class="text-secondary">x {{ item.cantidad }}</small>
+            </div>
+            <span class="text-white">${{ item.precio * item.cantidad }}</span>
+          </li>
+          
+          <li class="list-group-item bg-dark text-white border-secondary d-flex justify-content-between">
+            <span class="fw-bold fs-5">Total a Pagar</span>
+            <strong class="fs-4 text-warning">${{ tiendaService.getTotal() }}</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>

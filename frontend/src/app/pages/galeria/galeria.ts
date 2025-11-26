@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { RouterLink } from '@angular/router'; 
-// CORRECCIÓN 1: Apuntamos al archivo .service y usamos el nombre correcto TiendaService
-import { TiendaService, Producto } from '../../services/tienda.service'; 
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { TiendaService, Producto } from '../../services/tienda.service';
 
 @Component({
   selector: 'app-galeria',
@@ -12,18 +11,24 @@ import { TiendaService, Producto } from '../../services/tienda.service';
   styleUrl: './galeria.css'
 })
 export class GaleriaComponent implements OnInit {
-  // Inyectamos el servicio
-  private tiendaService = inject(TiendaService); // Usamos TiendaService
+  
+  private tiendaService = inject(TiendaService);
+  private cd = inject(ChangeDetectorRef);
+  
   productos: Producto[] = [];
 
   ngOnInit(): void {
-    // CORRECCIÓN 2: Usamos la variable correcta 'this.tiendaService'
     this.tiendaService.getProductos().subscribe({
       next: (data) => {
         this.productos = data;
-        console.log('Productos cargados:', data);
+        this.cd.detectChanges(); 
       },
       error: (err) => console.error('Error al cargar:', err)
     });
+  }
+
+  // --- ESTA ES LA FUNCIÓN QUE FALTABA ---
+  agregar(item: Producto) {
+    this.tiendaService.addToCart(item);
   }
 }

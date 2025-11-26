@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* Fondo oscuro para toda la tienda */
+body {
+    background-color: #121212; /* Negro suave */
+    color: white; /* Texto blanco por defecto */
+}
